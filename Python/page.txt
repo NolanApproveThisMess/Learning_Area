@@ -1,0 +1,13 @@
+Dropping this notes so i can remember all codes 
+
+print() - print statement on the emulator as string
+len() - count the charatcer inside the paranthesis 
+input () - crete a print statemet and take input from the user
+
+Lopp 
+For in -  loop back 
+While true - loop infinite 
+
+Logical statement 
+
+if - 
