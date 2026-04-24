@@ -2,7 +2,7 @@
 
 import time
 
-def typer(text, delay= 0.05):
+def typer(text, delay= 0.005):
     for i in text:
         print(i, end="", flush= True)
         time.sleep(delay)
@@ -15,28 +15,75 @@ class Calculator:
         self.operator= operator
 
     def calculate(self):
-        if operator == "+":
-            result= self.first + self.second
-            return f"Result: {result}"
-        elif operator == "-":
-            result= self.first - self.second
-            return f"Result: {result}"
-        elif operator == "/":
-            result= self.first / self.second
-            return f"Result: {result}"
-        elif operator == "*":
-            result= self.first * self.second
-            return f"Result: {result}"
+        while True:
+            try:
+                if self.operator == "+":
+                    return self.first + self.second
+                elif self.operator == "-":
+                    return self.first - self.second
+                elif self.operator == "/":
+                    return self.first / self.second
+                elif self.operator == "*":
+                    return self.first * self.second
+                else:
+                    return "Invalid Please Try again"
+            except ZeroDivisionError:
+                return ("Second number for division should not be 0. Please try again")
+
+
+        
+def calculus():
+    while True:
+        try:
+            typer("Welcome! Please iput the first number!")
+            fist=int(input())
+            break
+        except ValueError:
+            typer("Opps thats not a number, please try again!")
+    while True:
+        try:
+            typer("What's the second number?")
+            secs=int(input())
+
+            break
+        except ValueError:
+            typer("Opps thats not a number, please try again!")
+
+    while True:
+        typer("What's the operator? type any of these: +,-,*,/")
+        ops=input()
+        if ops in ("+","-","/","*"):
+            break
         else:
-            return "Invalid Please Try again"
-while True:
-    typer("Welcome to mini Calculator!")
-    typer("Please put your first number")
-    first=input()
-    if isinstance(first,int):
-        first = float(first)
-    typer("Please put your second number")
-    second=input()
+            typer("Not on the list. Try again")
+    
+    return fist,secs,ops
+
+magic=calculus()
+calc=Calculator(*magic)
+typer(f"Result: {calc.calculate()}")        
+
+
+def exits():
+    while True:
+        try:
+            typer("Wanna try again? type Y if yes, N if no")
+            ans=input().upper()
+            if ans == ("Y"):
+                magics=calculus()
+                calc=Calculator(*magics)
+                typer(f"Result: {calc.calculate()}")
+            elif ans ==("N"):
+                typer("Got it! Bye!")
+                break
+            else:
+                typer("nope, try again. It's Y or N")
+        except ValueError:
+            typer("Try again folks")
+
+exits()
+
+
 
 
         
